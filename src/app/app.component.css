@@ -1,0 +1,23 @@
+
+.container
+{
+	margin:4px;
+	padding:4px;
+	background: rgba(128,128,128,0.1);
+}
+
+.container.inline {
+	display:inline-block;
+}
+
+.item:first-child
+{	margin-top:0px;
+}
+
+.item
+{
+	min-width:100px;
+	margin-top:4px;
+	padding:4px;
+	background: rgba(128,128,128,0.1);
+}

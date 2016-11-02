@@ -1,0 +1,8 @@
+
+<div class="container inline">
+	<div class="item" drag [drag-data]="item" *ngFor="let item of list2">{{item.name}}</div>
+</div>
+
+<div class="container inline">
+	<div class="item" drop *ngFor="let item of list1">{{item.name}}</div>
+</div>
