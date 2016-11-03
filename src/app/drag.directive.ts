@@ -13,37 +13,66 @@ import { Directive, ElementRef, Input, Renderer , OnInit } from '@angular/core';
 @Directive({
 	selector : '[drag]',
 	host : {
-		'(dragstart)': 'onDragStart($event)'
+		'(drag)' : 'drag($event)',
+		'(dragend)': 'dragend($event)',
+		'(dragenter)': 'dragenter($event)',
+		'(dragexit)': 'dragexit($event)',
+		'(dragleave)': 'dragleave($event)',
+		'(dragover)': 'dragover($event)',
+		'(dragstart)': 'dragstart($event)',
+		'(drop)': 'drop($event)'
 	}
 })
-export class DragDirective implements OnInit
-{
+export class DragDirective implements OnInit {
 	
 	renderer: Renderer;
 	el: ElementRef;
 	
 	@Input('drag-data') dragData:any;
 	
-	constructor( el: ElementRef, renderer: Renderer )
-	{
+	constructor( el: ElementRef, renderer: Renderer ) {
 		this.el = el;
 		this.renderer = renderer;
 	}
 	
-	ngOnInit()
-	{
+	ngOnInit() {
 		this
 		.renderer
 		.setElementAttribute( this.el.nativeElement, "draggable", "true");
-		
-		this
-		.renderer
-		.setElementAttribute( this.el.nativeElement, "ondragstart", "true");
 	}
 	
-	onDragStart(ev: DragEvent)
-	{
-		console.log("Drag Started");
-		ev.dataTransfer.setData( "application/javascript" , JSON.stringify( this.dragData) );
+	drag(ev: DragEvent) {
+//		console.log("drag","drag");
 	}
+	
+	dragend(ev: DragEvent) {
+//		console.log("drag","dragend");
+	}
+	
+	dragenter(ev: DragEvent) {
+//		console.log("drag","dragenter");
+	}
+	
+	dragexit(ev: DragEvent) {
+//		console.log("drag","dragexit");
+	}
+	
+	dragleave(ev: DragEvent) {
+//		console.log("drag","dragleave");
+	}
+	
+	dragover(ev: DragEvent) {
+//		console.log("drag","dragover");
+	}
+	
+	dragstart(ev: DragEvent) {
+//		ev.dataTransfer.dropEffect = "move";
+		ev.dataTransfer.setData( "application/javascript" , JSON.stringify( this.dragData) );
+		console.log("drag","dragstart",ev.dataTransfer.getData("application/javascript"));
+	}
+	
+	drop(ev: DragEvent) {
+		console.log("drag","drop",ev);
+	}
+	
 }

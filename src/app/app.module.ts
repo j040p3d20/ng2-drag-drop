@@ -5,18 +5,20 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { DragDirective } from './drag.directive'
+import { DropDirective } from './drop.directive'
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DragDirective
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		DragDirective,
+		DropDirective
+	],
+	imports: [
+		BrowserModule,
+		FormsModule,
+		HttpModule
+	],
+	providers: [],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }
