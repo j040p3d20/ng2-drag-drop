@@ -1,17 +1,19 @@
-
 .container
 {
 	margin:12px;
 	padding:12px;
 	background: rgba(128,128,128,0.1);
+	vertical-align: top;
 }
 
-.container.inline {
+.container.inline
+{
 	display:inline-block;
 }
 
 .item:first-child
-{	margin-top:0px;
+{
+	margin-top:0px;
 }
 
 .item

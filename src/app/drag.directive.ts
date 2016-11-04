@@ -29,6 +29,8 @@ export class DragDirective implements OnInit {
 	el: ElementRef;
 	
 	@Input('drag-data') dragData:any;
+    
+    @Input('drag-from') dragFrom:any;
 	
 	constructor( el: ElementRef, renderer: Renderer ) {
 		this.el = el;
@@ -42,37 +44,51 @@ export class DragDirective implements OnInit {
 	}
 	
 	drag(ev: DragEvent) {
-//		console.log("drag","drag");
-	}
-	
-	dragend(ev: DragEvent) {
-//		console.log("drag","dragend");
+//		console.log("drag","drag",this,ev);
 	}
 	
 	dragenter(ev: DragEvent) {
-//		console.log("drag","dragenter");
+//		console.log("drag","dragenter",this,ev);
 	}
 	
 	dragexit(ev: DragEvent) {
-//		console.log("drag","dragexit");
+//		console.log("drag","dragexit",this,ev);
 	}
 	
 	dragleave(ev: DragEvent) {
-//		console.log("drag","dragleave");
+//		console.log("drag","dragleave",this,ev);
 	}
 	
 	dragover(ev: DragEvent) {
-//		console.log("drag","dragover");
+//		console.log("drag","dragover",this,ev);
 	}
 	
 	dragstart(ev: DragEvent) {
-//		ev.dataTransfer.dropEffect = "move";
 		ev.dataTransfer.setData( "application/javascript" , JSON.stringify( this.dragData) );
-		console.log("drag","dragstart",ev.dataTransfer.getData("application/javascript"));
+//		console.log("drag","dragstart",this,ev);
 	}
 	
 	drop(ev: DragEvent) {
-		console.log("drag","drop",ev);
+		console.log("drag","drop",this,ev);
 	}
+    
+    dragend(ev: DragEvent) {
+        console.log("drag","dragend",this,ev);
+        
+        console.log( "dragDropTransferSuccessfull" , ev.dataTransfer.getData("dragDropTransferSuccessfull") );
+
+        if ( typeof this.dragFrom == "function" )
+        {
+            this.dragFrom.apply( this.dragData );
+        }
+        else if ( this.dragFrom instanceof Array ) 
+        {
+            var i = this.dragFrom.indexOf( this.dragData );
+            if ( i > -1 )
+            {
+                this.dragFrom.splice(i,1);
+            }
+        }
+    }
 	
 }

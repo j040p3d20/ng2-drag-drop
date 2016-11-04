@@ -45,4 +45,8 @@ export class AppComponent {
 		}
 	];
 	
+	dropCallback( val ) {
+	    console.log( val );
+	}
+	
 }
